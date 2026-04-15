@@ -7,7 +7,7 @@ import os
 # Fix import path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from model.inference import predict
+from serving.inference import predict
 
 app = FastAPI()
 
@@ -71,7 +71,7 @@ demo = gr.Interface(
         gr.Textbox(label="Title (Mr, Mrs, Miss, etc)"),
         gr.Textbox(label="Deck (A-G or Missing)")
     ],
-    outputs="text",
+    outputs="json",
     title="Titanic Survival Predictor",
     description="Enter passenger details to predict survival."
 )
