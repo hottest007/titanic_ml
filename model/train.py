@@ -1,5 +1,5 @@
 import joblib
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
@@ -37,11 +37,31 @@ def train():
         X, y, stratify=y, test_size=0.2, random_state=42
     )
 
-    model.fit(X_train, y_train)
+    # param_grid = {
+    # "model__C": [0.01, 0.1, 1, 10],
+    # "model__class_weight": [
+    #     "balanced",
+    #     {0:1, 1:2},
+    #     {0:1, 1:3}
+    # ]
+    # }
+
+    # grid = GridSearchCV(
+    # model,
+    # param_grid,
+    # cv=5,
+    # scoring="recall",
+    # n_jobs=-1
+    # )
+
+    # grid.fit(X_train, y_train)
+
+    # best_model = grid.best_estimator_
 
     joblib.dump(model, "model/titanic_logreg.pkl")
 
     print("Model saved successfully!")
+
 
 
 if __name__ == "__main__":
