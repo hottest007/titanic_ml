@@ -5,6 +5,11 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 
 from src.data.load_data import load_data
 from src.features.build_features import engineer_features
@@ -57,6 +62,9 @@ def train():
     # grid.fit(X_train, y_train)
 
     # best_model = grid.best_estimator_
+
+    
+    model.fit(X_train,y_train)
 
     joblib.dump(model, "model/titanic_logreg.pkl")
 

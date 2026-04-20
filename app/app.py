@@ -7,7 +7,7 @@ import os
 # Fix import path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from serving.inference import predict
+from src.serving.inference import predict
 
 app = FastAPI()
 
@@ -22,8 +22,8 @@ class Passenger(BaseModel):
     Parch: int
     Fare: float
     Embarked: str
-    Title: str
-    Deck: str
+    Name: str
+    Cabin: str
 
 # ----------------------
 # API Routes
@@ -43,7 +43,7 @@ def api_predict(data: Passenger):
 # ----------------------
 # Gradio Interface
 # ----------------------
-def gradio_fn(Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Title, Deck):
+def gradio_fn(Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Name, Cabin):
     payload = {
         "Pclass": int(Pclass),
         "Sex": Sex,
@@ -52,8 +52,8 @@ def gradio_fn(Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Title, Deck):
         "Parch": int(Parch),
         "Fare": float(Fare),
         "Embarked": Embarked,
-        "Title": Title,
-        "Deck": Deck,
+        "Name": Name,
+        "Deck": Cabin,
     }
     
     return predict(payload)
@@ -68,8 +68,8 @@ demo = gr.Interface(
         gr.Number(label="Parents/Children aboard"),
         gr.Number(label="Fare"),
         gr.Dropdown(["S","C","Q"], label="Embarked"),
-        gr.Textbox(label="Title (Mr, Mrs, Miss, etc)"),
-        gr.Textbox(label="Deck (A-G or Missing)")
+        gr.Textbox(label="Name (e.g Elon, Mr. Musk)"),
+        gr.Textbox(label="Cabin (A-G e.g C85)")
     ],
     outputs="json",
     title="Titanic Survival Predictor",

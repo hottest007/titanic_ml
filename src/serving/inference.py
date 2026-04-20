@@ -1,5 +1,11 @@
 import joblib
 import pandas as pd
+
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..")))
+
 from src.features.build_features import engineer_features
 
 model = joblib.load("model/titanic_logreg.pkl")
