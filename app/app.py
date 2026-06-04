@@ -36,7 +36,7 @@ def root():
 def api_predict(data: Passenger):
     try:
         result = predict(data.dict())
-        return {"prediction": result}
+        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
