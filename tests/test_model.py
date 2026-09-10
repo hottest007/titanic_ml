@@ -23,8 +23,8 @@ def test_model_prediction():
         "Parch": 1,
         "Fare": 25,
         "Embarked": "S",
-        "Name": "Esther,miss, Josh",
-        "Cabin": "C85"
+        "Title": "miss",
+        "Deck": "C"
     }])
 
     prediction = model.predict(passenger)
