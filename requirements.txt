@@ -6,3 +6,5 @@ pandas
 numpy
 joblib
 pydantic==2.6.4
+pytest
+httpx
