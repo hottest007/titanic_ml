@@ -33,5 +33,5 @@ def test_predict():
     assert "prediction" in data
     assert "probability" in data
     assert data["prediction"] in [0,1]
-    assert data["Outccome"] in ["Survived","Did not Survive"]
+    assert data["Outcome"] in ["Survived","Did not Survive"]
     
