@@ -20,13 +20,18 @@ def test_predict():
                "Fare": 25,
                "Embarked": "S",
                "Name": "Esther,miss, Josh",
-               "Deck": "C85"
+               "Cabin": "C85"
                }
+
+
     response = client.post("/predict", json=payload)
+    print("STATUS:", response.status_code)
+    print("RESPONSE:", response.json())
+
     data = response.json()
     assert response.status_code == 200
     assert "prediction" in data
     assert "probability" in data
     assert data["prediction"] in [0,1]
-    assert data["outccome"] in ["Survived","Did not Survive"]
+    assert data["Outccome"] in ["Survived","Did not Survive"]
     
